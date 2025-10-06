@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>eNHIMA — Dashboard Prototype</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">eNHIMA</a>
+      <nav class="nav">
+        <button id="menuBtn2" class="menu-btn" aria-label="Open menu">☰</button>
+        <ul class="nav-list" id="navList2">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#contributions">Contributions</a></li>
+          <li><a href="#beneficiaries">Beneficiaries</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container dashboard">
+    <div class="topbar">
+      <button class="menu-toggle" id="openSidebar">☰</button>
+      <div class="top-actions">
+        <button class="icon-btn" title="Search">🔍</button>
+        <button class="icon-btn" title="Profile">👤</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <aside class="sidebar" id="sidebar">
+        <ul>
+          <li class="active">Dashboard</li>
+          <li>Contributions</li>
+          <li>Beneficiaries</li>
+          <li>Manage Profile</li>
+        </ul>
+      </aside>
+
+      <section class="content">
+        <h1>Hello, THOMAS TUMBIKANI</h1>
+        <div class="summary-cards">
+          <div class="card summary">
+            <h3>Summary</h3>
+            <dl>
+              <dt>Member ID</dt><dd>10128438110111</dd>
+              <dt>National ID</dt><dd>370645/31/1</dd>
+              <dt>No. of Beneficiaries</dt><dd>0</dd>
+              <dt>Last contribution</dt><dd>2024-08-08</dd>
+            </dl>
+          </div>
+
+          <div class="card compliance">
+            <h3>Compliance</h3>
+            <p>Status: <strong>ACTIVE</strong></p>
+            <p>Contributions: <strong>14</strong></p>
+            <p>Total: <strong>840.0</strong></p>
+          </div>
+        </div>
+
+        <section id="contributions" class="card table-card">
+          <h2>My Contributions</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Employer Number</th><th>Period</th><th>Employer's Amount</th></tr>
+              </thead>
+              <tbody>
+                <!-- sample rows -->
+                <tr><td>1000</td><td>9 - 2025</td><td>0.00</td></tr>
+                <tr><td>1000</td><td>7 - 2025</td><td>0.00</td></tr>
+                <tr><td>1000</td><td>6 - 2025</td><td>0.00</td></tr>
+                <tr><td>1000</td><td>8 - 2025</td><td>0.00</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="beneficiaries" class="card">
+          <h2>My Beneficiaries</h2>
+          <p>No active beneficiaries.</p>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 eNHIMA (Prototype)</p>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

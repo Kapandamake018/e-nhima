@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>eNHIMA — National Health Insurance (Prototype)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">eNHIMA</a>
+      <nav class="nav">
+        <button id="menuBtn" class="menu-btn" aria-label="Open menu">☰</button>
+        <ul class="nav-list" id="navList">
+          <li><a href="#">Home</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1>National Health Insurance — Zambia</h1>
+        <p class="lede">Reliable, affordable healthcare financing for every Zambian household.</p>
+        <div class="hero-ctas">
+          <a class="btn primary" href="dashboard.html">Member Dashboard</a>
+          <a class="btn outline" href="#learn">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="learn" class="features container">
+      <h2>Why NHIMA</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Universal Coverage</h3>
+          <p>NHIMA provides broad healthcare financing to ensure access for all households.</p>
+        </article>
+        <article class="card">
+          <h3>Transparent Contributions</h3>
+          <p>Clear records for employers and members with a simple digital experience.</p>
+        </article>
+        <article class="card">
+          <h3>Secure & Compliant</h3>
+          <p>Modern security and compliance best-practices protect member data.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta container">
+      <h2>Get Started</h2>
+      <p>Create an account or login to manage contributions and beneficiaries.</p>
+      <div class="hero-ctas">
+        <button class="btn primary" id="openLogin">Login</button>
+        <a class="btn outline" href="#">Sign up</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 National Health Insurance Management Authority (Prototype)</p>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal" aria-hidden="true">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+      <button class="modal-close" id="closeLogin" aria-label="Close">×</button>
+      <h3 id="loginTitle">Member Login</h3>
+      <form class="form" id="loginForm">
+        <label for="memberId">Member ID</label>
+        <input id="memberId" name="memberId" type="text" placeholder="Member ID" required />
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="Password" required />
+        <div class="form-actions">
+          <button class="btn primary" type="submit">Login</button>
+          <button class="btn outline" type="button" id="cancelLogin">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
