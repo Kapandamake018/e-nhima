@@ -226,3 +226,25 @@ a{color:inherit}
 	.card{padding:14px}
 }
 
+/* Beneficiaries page specific responsive tweaks */
+.page .card h2{font-size:var(--type-xxl)}
+.page .card .btn{white-space:nowrap}
+
+@media (max-width:720px){
+	/* Stack top toolbar: button on its own row, date under or right-aligned */
+	.page > div:first-child{flex-direction:column;align-items:flex-start;gap:8px}
+	.page > div:first-child .btn{width:100%;max-width:320px}
+}
+
+@media (max-width:540px){
+	/* Tabs and search stack; search becomes full-width */
+	.page .card > div > div{flex-direction:column;align-items:stretch}
+	.page .card > div > div .btn{width:100%}
+	.page .card input[placeholder="Search"]{width:100%;box-sizing:border-box}
+	.page .card select{width:72px}
+}
+
+/* Ensure table wrapper allows horizontal scroll on small devices while using the stacked table fallback at <=640px */
+.table-card .table-wrap{overflow:auto}
+
+
