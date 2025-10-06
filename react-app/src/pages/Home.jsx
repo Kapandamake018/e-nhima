@@ -1,5 +1,4 @@
 import React from 'react'
-import LoginForm from '../ui/LoginForm'
 
 export default function Home(){
   return (
@@ -8,10 +7,6 @@ export default function Home(){
         <div className="hero-inner container">
           <h1>National Health Insurance — Zambia</h1>
           <p className="lede">Reliable healthcare financing for every Zambian household.</p>
-          <div className="hero-ctas">
-            <a className="btn primary" href="/dashboard">Member Dashboard</a>
-            <LoginForm />
-          </div>
         </div>
       </section>
 

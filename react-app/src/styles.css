@@ -34,7 +34,7 @@ body{
 }
 .container{max-width:var(--max-width);margin:0 auto;padding:20px}
 .site-header{background:linear-gradient(90deg,var(--accent-2),var(--accent));}
-.header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;flex-wrap:nowrap;width:100%}
 .brand{font-weight:700;color:white;text-decoration:none;font-size:1.2rem}
 .nav-list{list-style:none;margin:0;padding:0;display:flex;gap:14px}
 .nav-list a{color:rgba(255,255,255,0.95);text-decoration:none}
@@ -46,6 +46,8 @@ body{
 .lede{color:var(--color-muted);margin:0 0 20px;max-width:720px}
 .btn{display:inline-block;padding:10px 16px;border-radius:8px;text-decoration:none;cursor:pointer;border:1px solid transparent}
 .btn.primary{background:var(--color-accent);color:white;font-weight:600}
+.role-btn{padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--color-text);cursor:pointer}
+.role-btn.selected{background:var(--color-accent);color:#fff;border-color:transparent}
 .btn.outline{background:transparent;border-color:rgba(255,255,255,0.08);color:var(--color-muted)}
 .features{padding:24px 0}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -95,10 +97,12 @@ body{
 	.page{padding:18px}
 	.summary-grid{flex-direction:column;gap:12px}
 	.table-card .table-wrap{padding:8px}
-	.hero-inner h1{font-size:1.5rem}
+	.hero-inner h1{font-size:1.75rem;line-height:1.2;word-wrap:break-word}
 	.hero-inner h1 small{display:none}
 	.hero{padding:20px 0}
 	.cards{grid-template-columns:1fr}
+	.lede{font-size:0.95rem}
+	.container{padding:16px}
 }
 
 /* stacked table for narrow screens */
@@ -125,12 +129,31 @@ body{
 	.header-inner{padding:10px}
 	.brand{font-size:1rem}
 	.top-nav{right:8px}
+	
+	/* hero adjustments for phones */
+	.hero-inner h1{font-size:1.4rem;line-height:1.25}
+	.lede{font-size:0.9rem;line-height:1.4}
+	.hero{padding:16px 0}
+	
+	/* logo sizing */
+	.logo{height:28px}
+	
+	/* better text wrapping */
+	.card h3{font-size:1.1rem}
+	.card p{font-size:0.9rem}
+	
+	/* login panel mobile */
+	.login-panel{padding:20px;max-width:100%}
+	.login-panel h1{font-size:1.5rem}
+	
+	/* button spacing */
+	.role-btn{padding:10px 14px;font-size:0.9rem}
 }
 
 /* sidebar panel */
-.sidebar-panel{position:fixed;inset:0;pointer-events:none;display:flex;z-index:60}
-.sidebar-panel .sidebar-backdrop{flex:1;background:rgba(0,0,0,0.45);opacity:0;transition:opacity .18s ease}
-.sidebar-panel .sidebar-inner{width:280px;background:var(--color-card);padding:18px;transform:translateX(-110%);transition:transform .22s ease;box-shadow:8px 0 30px rgba(2,6,23,0.6)}
+.sidebar-panel{position:fixed;inset:0;pointer-events:none;display:flex;z-index:60;justify-content:flex-end}
+.sidebar-panel .sidebar-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.45);opacity:0;transition:opacity .18s ease}
+.sidebar-panel .sidebar-inner{width:320px;background:var(--color-card);padding:18px;transform:translateX(110%);transition:transform .28s cubic-bezier(.2,.9,.2,1);box-shadow:-8px 0 30px rgba(2,6,23,0.6);position:relative;z-index:62}
 .sidebar-panel.open{pointer-events:auto}
 .sidebar-panel.open .sidebar-backdrop{opacity:1}
 .sidebar-panel.open .sidebar-inner{transform:translateX(0)}
@@ -138,10 +161,45 @@ body{
 .sidebar-inner ul{list-style:none;padding:40px 0 0 0;margin:0}
 .sidebar-inner li{padding:12px 0}
 .sidebar-inner a{color:var(--color-muted);text-decoration:none}
+
+.sidebar-inner .home-link a{font-weight:700;color:var(--color-text);display:flex;align-items:center;gap:10px}
+.sidebar-inner .home-icon{font-size:18px;display:inline-block}
+.sidebar-inner .divider{height:1px;background:rgba(255,255,255,0.04);margin:12px 0;border-radius:2px}
 .logo{height:36px;display:block}
 .brand #brandText{display:none}
 
 .brand img[alt="eNHIMA"]{display:inline-block}
+
+/* header behavior: show nav on desktop, hamburger on small screens */
+.mobile-menu{display:none;border:0;background:transparent;color:var(--color-text);font-size:20px;padding:8px}
+.top-nav{display:flex;gap:18px;align-items:center;flex:1 1 auto;justify-content:flex-end}
+.top-nav a{color:var(--color-text);text-decoration:none;padding:6px 8px;border-radius:6px;margin:0 6px}
+.top-nav a:hover{background:rgba(255,255,255,0.03)}
+.nav-actions{display:flex;gap:8px;align-items:center}
+.icon-btn{background:transparent;border:0;color:var(--color-text);padding:6px;border-radius:6px}
+.brand-wrap{display:flex;align-items:center;gap:12px;flex:1;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:8px}
+
+@media (max-width:900px){
+	.nav-list{display:none}
+	.top-nav{display:none}
+	.mobile-menu{display:inline-block}
+}
+
+/* profile dropdown */
+.profile-menu{position:relative}
+.profile-menu .icon-btn{background:transparent;border:0;color:var(--color-text);padding:6px 8px;border-radius:6px}
+.profile-dropdown{position:absolute;right:0;top:36px;background:var(--color-card);padding:8px;border-radius:8px;box-shadow:0 8px 24px rgba(2,6,23,0.6);display:flex;flex-direction:column;gap:6px;min-width:180px;z-index:999}
+.profile-dropdown .menu-item{color:var(--color-text);text-decoration:none;padding:8px;border-radius:6px;background:transparent;text-align:left}
+.profile-dropdown .menu-item:hover{background:rgba(255,255,255,0.03)}
+
+/* login panel tweaks */
+.login-page{display:flex;align-items:center;justify-content:center;min-height:70vh}
+.login-panel{width:100%;max-width:520px;padding:28px}
+.login-panel h1{margin:0 0 6px}
+.login-panel .muted{margin:0 0 12px;color:var(--color-muted)}
+.form input{width:100%;box-sizing:border-box}
+.form .form-actions{justify-content:flex-end}
 
 
 /* Accessibility helpers */
@@ -150,4 +208,18 @@ body{
 
 /* visible focus outlines */
 :focus{outline:3px solid rgba(10,88,202,0.6);outline-offset:3px}
+
+/* reset link colors to avoid browser default purple/blue */
+a{color:inherit}
+
+/* Extra small screens (phones below 400px) */
+@media (max-width:400px){
+	.hero-inner h1{font-size:1.25rem}
+	.container{padding:12px}
+	.logo{height:24px}
+	.mobile-menu{font-size:18px}
+	.brand{font-size:0.9rem}
+	.login-panel{padding:16px}
+	.card{padding:14px}
+}
 

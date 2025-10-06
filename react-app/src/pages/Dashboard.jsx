@@ -7,11 +7,11 @@ export default function Dashboard(){
     <div className="dashboard page">
       <div className="dashboard-header">
         <div className="header-left">
-          <h1>Hello, {user?.name ?? 'Member'}</h1>
-          <p className="muted">Welcome to eNHIMA</p>
+          <h1>Hello, {user?.name ?? 'User'}</h1>
+          <p className="muted">Role: {user?.role ?? 'member'}</p>
         </div>
         <div className="header-right">
-          {user? <button onClick={logout} className="btn outline">Logout</button> : null}
+          {/* Logout moved to Profile menu; keep header-right reserved for actions */}
         </div>
       </div>
 
@@ -19,8 +19,8 @@ export default function Dashboard(){
         <div className="card summary">
           <h3>Summary</h3>
           <dl>
-            <dt>Member ID</dt><dd>{user?.memberId ?? '10128438110111'}</dd>
-            <dt>National ID</dt><dd>370645/31/1</dd>
+            <dt>ID</dt><dd>{user?.id ?? user?.memberId ?? 'n/a'}</dd>
+            <dt>Role</dt><dd>{user?.role ?? 'member'}</dd>
             <dt>No. of Beneficiaries</dt><dd>0</dd>
             <dt>Last contribution</dt><dd>2024-08-08</dd>
           </dl>
