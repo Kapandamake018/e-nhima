@@ -22,7 +22,7 @@
 	color-scheme: dark;
 }
 *{box-sizing:border-box}
-html,body{height:100%}
+html,body{height:100%;overflow-x:hidden}
 body{
 	margin:0;
 	font-family:var(--font-family);
@@ -31,6 +31,9 @@ body{
 	-webkit-font-smoothing:antialiased;
 	font-size:var(--type-md);
 	line-height:1.5;
+	-webkit-text-size-adjust:100%;
+	text-size-adjust:100%; /* Prevent text size adjustment on mobile */
+	-webkit-tap-highlight-color:transparent; /* Remove tap highlight on mobile */
 }
 .container{max-width:var(--max-width);margin:0 auto;padding:20px}
 .site-header{background:linear-gradient(90deg,var(--accent-2),var(--accent));}
@@ -103,6 +106,15 @@ body{
 	.cards{grid-template-columns:1fr}
 	.lede{font-size:0.95rem}
 	.container{padding:16px}
+	
+	/* Better button and form scaling */
+	.btn{padding:10px 14px;font-size:0.95rem}
+	.form input{font-size:16px} /* Prevent zoom on iOS */
+	input, select, textarea{font-size:16px;max-width:100%}
+	
+	/* Card titles smaller */
+	.card h2, .page h1{font-size:1.5rem}
+	.card h3{font-size:1.2rem}
 }
 
 /* stacked table for narrow screens */
@@ -111,15 +123,15 @@ body{
 		display:block;
 	}
 	.table-card thead{display:none}
-	.table-card tr{margin-bottom:12px;padding:12px;background:transparent;border-radius:8px}
+	.table-card tr{margin-bottom:12px;padding:12px;background:rgba(255,255,255,0.02);border-radius:8px}
 	.table-card td{
-		display:flex;justify-content:space-between;padding:8px 6px;border-top:0;border-bottom:1px solid rgba(255,255,255,0.03)
+		display:flex;justify-content:space-between;padding:8px 6px;border-top:0;border-bottom:1px solid rgba(255,255,255,0.03);word-break:break-word
 	}
 	.table-card td:last-child{border-bottom:0}
 	.table-card td::before{
 		content:attr(data-label);
 		color:var(--color-muted);
-		margin-right:12px;font-weight:600;flex:0 0 42%;
+		margin-right:12px;font-weight:600;flex:0 0 42%;word-wrap:break-word
 	}
 
 	/* modal becomes full-screen on phones */
@@ -231,20 +243,48 @@ a{color:inherit}
 .page .card .btn{white-space:nowrap}
 
 @media (max-width:720px){
-	/* Stack top toolbar: button on its own row, date under or right-aligned */
-	.page > div:first-child{flex-direction:column;align-items:flex-start;gap:8px}
-	.page > div:first-child .btn{width:100%;max-width:320px}
+  /* Stack top toolbar: button on its own row, date under or right-aligned */
+  .page > div:first-child{flex-direction:column;align-items:flex-start;gap:8px}
+  .page > div:first-child .btn{width:100%;max-width:320px}
+  
+  /* Profile page: make info table stack on mobile */
+  .page .card table{display:block;width:100%}
+  .page .card table tbody{display:block}
+  .page .card table tr{display:flex;flex-direction:column;border-bottom:1px solid rgba(255,255,255,0.04);padding:8px 0}
+  .page .card table td{display:block;width:100%;padding:6px 12px}
+  .page .card table td:first-child{color:var(--color-muted);font-weight:600;padding-bottom:4px}
+  
+  /* Dashboard: ensure cards stack with better spacing */
+  .dashboard-header{flex-direction:column;align-items:flex-start;gap:8px}
+  .header-left h1{font-size:1.6rem}
+  .summary-grid .card{min-width:100%}
 }
 
 @media (max-width:540px){
-	/* Tabs and search stack; search becomes full-width */
-	.page .card > div > div{flex-direction:column;align-items:stretch}
-	.page .card > div > div .btn{width:100%}
-	.page .card input[placeholder="Search"]{width:100%;box-sizing:border-box}
-	.page .card select{width:72px}
+  /* Tabs and search stack; search becomes full-width */
+  .page .card > div > div{flex-direction:column;align-items:stretch}
+  .page .card > div > div .btn{width:100%}
+  .page .card input[placeholder="Search"]{width:100%;box-sizing:border-box}
+  .page .card select{width:72px}
+  
+  /* Tighter page padding on very small screens */
+  .page{padding:16px 12px}
+  
+  /* Profile page: tighter spacing */
+  .page .card table td{padding:4px 8px;font-size:0.9rem}
+  
+  /* Dashboard: smaller headings */
+  .header-left h1{font-size:1.4rem}
 }
 
 /* Ensure table wrapper allows horizontal scroll on small devices while using the stacked table fallback at <=640px */
 .table-card .table-wrap{overflow:auto}
 
-
+/* Profile page buttons responsive */
+@media (max-width:480px){
+  .page .card .btn{width:100%;margin:4px 0;text-align:center;min-height:44px} /* Better touch target */
+  
+  /* Improve touch targets for all interactive elements */
+  button, .btn, a.btn, input[type="submit"]{min-height:44px;padding:10px 16px}
+  .icon-btn, .mobile-menu{min-width:44px;min-height:44px}
+}

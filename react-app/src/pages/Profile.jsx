@@ -50,12 +50,13 @@ export default function Profile(){
     <div className="page">
       <div className="card" style={{padding:18}}>
         <h2 style={{marginTop:0,marginBottom:12}}>{(fullName || 'My Profile').toUpperCase()}</h2>
-        <table style={{width:'100%',borderCollapse:'collapse'}}>
-          <tbody>
-            <tr>
-              <td style={{padding:12,width:'35%',color:'var(--color-muted)'}}>Full Name:</td>
-              <td style={{padding:12}}>{fullName}</td>
-            </tr>
+        <div style={{overflowX:'auto'}}>
+          <table style={{width:'100%',borderCollapse:'collapse',minWidth:320}}>
+            <tbody>
+              <tr>
+                <td style={{padding:12,width:'35%',color:'var(--color-muted)'}}>Full Name:</td>
+                <td style={{padding:12,wordWrap:'break-word'}}>{fullName}</td>
+              </tr>
             <tr>
               <td style={{padding:12,color:'var(--color-muted)'}}>Username:</td>
               <td style={{padding:12}}>{username}</td>
@@ -106,8 +107,9 @@ export default function Profile(){
             </tr>
           </tbody>
         </table>
+        </div>
 
-        <div style={{marginTop:18,display:'flex',gap:10}}>
+        <div style={{marginTop:18,display:'flex',gap:10,flexWrap:'wrap'}}>
           <button className="btn" onClick={()=>alert('Change password flow coming soon')}>Change Password</button>
           <button className="btn outline" onClick={doLogout}>Logout</button>
         </div>
