@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Home(){
   return (
@@ -7,6 +8,9 @@ export default function Home(){
         <div className="hero-inner container">
           <h1>National Health Insurance — Zambia</h1>
           <p className="lede">Reliable healthcare financing for every Zambian household.</p>
+          <div style={{marginTop:16}}>
+            <Link to="/dashboard" className="btn primary" style={{padding:'10px 16px',borderRadius:8}}>Go to Dashboard</Link>
+          </div>
         </div>
       </section>
 
